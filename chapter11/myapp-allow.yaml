@@ -1,0 +1,32 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: myapp-allow
+  namespace: testing
+spec:
+  podSelector: 
+    matchLabels:
+      app: myapp
+  ingress: 
+  - from:
+    - podSelector:
+        matchLabels:
+          app: nginx
+    ports:
+    - port: 80
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          ns: kube-system
+  egress:
+  - to:
+    - podSelector:
+        matchLabels:
+          app: nginx
+  - to:
+    - namespaceSelector:
+        matchLabels: 
+          ns: kube-system
+  policyTypes:
+  - Ingress
+  - Egress

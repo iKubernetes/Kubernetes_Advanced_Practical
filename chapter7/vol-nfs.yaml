@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: vol-nfs-pod
+  labels:
+    app: redis
+spec:
+  containers:
+  - name: redis
+    image: redis:alpine
+    ports:
+    - containerPort: 6379
+      name: redisport
+    volumeMounts:
+    - mountPath: /data
+      name: redisdata
+  volumes:
+    - name: redisdata
+      nfs:
+        server: nfs.ikubernetes.io
+        path: /data/redis

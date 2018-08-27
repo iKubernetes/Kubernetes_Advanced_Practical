@@ -1,0 +1,9 @@
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  namespace: testing
+  name: pods-reader
+rules:
+- apiGroups: [""]   # "" 表示core API group
+  resources: ["pods", "pods/log"]
+  verbs: ["get", "list", "watch"]

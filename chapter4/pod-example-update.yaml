@@ -1,0 +1,78 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: 2018-08-21T15:04:29Z
+  name: pod-example
+  namespace: default
+  resourceVersion: "109855"
+  selfLink: /api/v1/namespaces/default/pods/pod-example
+  uid: 8071b7fb-a553-11e8-9ede-000c29ab0f5b
+spec:
+  containers:
+  - ikubernetes/myapp:v2
+    imagePullPolicy: IfNotPresent
+    name: myapp
+    resources: {}
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: default-token-28xsh
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  nodeName: node02.ilinux.io
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext: {}
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - name: default-token-28xsh
+    secret:
+      defaultMode: 420
+      secretName: default-token-28xsh
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: 2018-08-21T15:04:29Z
+    status: "True"
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: 2018-08-21T15:04:30Z
+    status: "True"
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: null
+    status: "True"
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: 2018-08-21T15:04:29Z
+    status: "True"
+    type: PodScheduled
+  containerStatuses:
+  - containerID: docker://beb21ac53a5bfb13680a1783cee8ed20f192a74d178fcab9da56ff0fbf6cdb8b
+    ikubernetes/myapp:v2
+    imageID: docker-pullable://ikubernetes/myapp@sha256:9c3dc30b5219788b2b8a4b065f548b922a34479577befb54b03330999d30d513
+    lastState: {}
+    name: myapp
+    ready: true
+    restartCount: 0
+    state:
+      running:
+        startedAt: 2018-08-21T15:04:29Z
+  hostIP: 172.16.0.67
+  phase: Running
+  podIP: 10.244.2.8
+  qosClass: BestEffort
+  startTime: 2018-08-21T15:04:29Z

@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: with-required-nodeaffinity-2
+spec:
+  affinity:
+    nodeAffinity: 
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - {key: zone, operator: In, values: ["foo", "bar"]}
+          - {key: ssd, operator: Exists, values: []}
+  containers:
+  - name: myapp
+    image: ikubernetes/myapp:v1

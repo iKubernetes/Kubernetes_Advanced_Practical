@@ -1,0 +1,12 @@
+apiVersion: auth.ilinux.io/v1beta1
+kind: User
+metadata:
+  name: admin
+  namespace: default
+spec:
+  userID: 1
+  email: k8s@ilinux.io
+  groups: 
+  - superusers
+  - administrators
+  password: ikubernetes

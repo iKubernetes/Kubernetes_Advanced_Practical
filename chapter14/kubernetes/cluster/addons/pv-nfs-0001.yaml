@@ -1,0 +1,57 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-nfs-0001
+  labels:
+    release: stable
+spec:
+  capacity:
+    storage: 20Gi
+  volumeMode: Filesystem
+  accessModes: ["ReadWriteOnce","ReadWriteMany"]
+  storageClassName: standard
+  mountOptions:
+    - hard
+    - nfsvers=4.1
+  nfs:
+    path:  "/volumes/v1"
+    server: 172.16.0.68
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-nfs-0002
+  labels:
+    release: stable
+spec:
+  capacity:
+    storage: 20Gi
+  volumeMode: Filesystem
+  accessModes: ["ReadWriteOnce","ReadWriteMany"]
+  storageClassName: standard
+  mountOptions:
+    - hard
+    - nfsvers=4.1
+  nfs:
+    path:  "/volumes/v2"
+    server: 172.16.0.68
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-nfs-0003
+  labels:
+    release: stable
+spec:
+  capacity:
+    storage: 20Gi
+  volumeMode: Filesystem
+  accessModes: ["ReadWriteOnce","ReadWriteMany"]
+  storageClassName: standard
+  mountOptions:
+    - hard
+    - nfsvers=4.1
+  nfs:
+    path:  "/volumes/v3"
+    server: 172.16.0.68
+---

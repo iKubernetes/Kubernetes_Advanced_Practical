@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: configmap-envfrom-demo
+  namespace: default
+spec:
+  containers:
+  - image: busybox
+    name: busybox-httpd
+    command: ["/bin/httpd"]
+    args: ["-f","-p","$(HTCFG_httpd_port)","$(HTCFG_verbose_level)"]
+    envFrom:
+    - prefix: HTCFG_
+      configMapRef:
+        name: busybox-httpd-config
+        optional: false

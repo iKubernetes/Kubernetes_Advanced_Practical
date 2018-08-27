@@ -1,0 +1,16 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: job-multi
+spec:
+  completions: 5
+  template:
+    metadata:
+      labels:
+        app: myjob
+    spec:
+      containers:
+      - name: myjob
+        image: alpine
+        command: ["/bin/sh",  "-c", "sleep 30"]
+      restartPolicy: Never

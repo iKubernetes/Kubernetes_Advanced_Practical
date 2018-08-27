@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: vol-cinder-pod
+spec:
+  containers:
+   - image: mysql
+      name: mysql
+      args:
+        - "--ignore-db-dir"
+        - "lost+found"
+      env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: YOUR_PASS
+      ports:
+        - containerPort: 3306
+          name: mysqlport
+      volumeMounts:
+        - name: mysqldata
+          mountPath: /var/lib/mysql
+  volumes:
+    - name: mysqldata
+      cinder:
+        volumeID: e2b8d2f7-wece-90d1-a505-4acf607a90bc
+        fsType: ext4

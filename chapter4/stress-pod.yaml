@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: stress-pod
+spec:
+  containers:
+  - name: stress
+    image: ikubernetes/stress-ng
+    command: ["/usr/bin/stress-ng", "-c 1", "-m 1", "--metrics-brief"]
+    resources:
+      requests:
+        memory: "128Mi"
+        cpu: "200m"
+      limits:
+        memory: "512Mi"
+        cpu: "400m"

@@ -1,0 +1,24 @@
+kind: HorizontalPodAutoscaler
+apiVersion: autoscaling/v2beta1
+metadata:
+  name: metrics-app-hpa
+spec:
+  scaleTargetRef:
+    # point the HPA at the sample application
+    # you created above
+    apiVersion: apps/v1
+    kind: Deployment
+    name: metrics-app
+  # autoscale between 2 and 10 replicas
+  minReplicas: 2
+  maxReplicas: 10
+  metrics:
+  # use a "Pods" metric, which takes the average of the
+  # given metric across all pods controlled by the autoscaling target
+  - type: Pods
+    pods:
+      # use the metric that you used above: pods/http_requests
+      metricName: http_requests
+      # target 500 milli-requests per second,
+      # which is 1 request every two seconds
+      targetAverageValue: 800m

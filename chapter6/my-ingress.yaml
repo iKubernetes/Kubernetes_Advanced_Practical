@@ -1,0 +1,12 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: my-ingress
+spec:
+  rules:
+  - host: www.ikubernetes.io
+    http:
+      paths:
+      - backend:
+          serviceName: myapp-svc
+          servicePort: 80

@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: busybox-httpd-config
+  namespace: default
+data:
+  httpd_port: "8080"
+  verbose_level: "-vv"
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: configmap-env-demo
+  namespace: default
+spec:
+  containers:
+  - image: busybox
+    name: busybox-httpd
+    command: ["/bin/httpd"]
+    args: ["-f","-p","$(HTTPD_PORT)","$(HTTPD_LOG_VERBOSE)"]
+    env:
+    - name: HTTPD_PORT
+      valueFrom:
+        configMapKeyRef:
+          name: busybox-httpd-config
+          key: httpd_port
+    - name: HTTPD_LOG_VERBOSE
+      valueFrom:
+        configMapKeyRef:
+          name: busybox-httpd-config
+          key: verbose_level
+          optional: true

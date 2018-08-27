@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: memleak-pod
+spec:
+  containers:
+  - name: simmemleak
+    image: saadali/simmemleak
+    resources:
+      requests:
+        memory: "64Mi"
+        cpu: "1"
+      limits:
+        memory: "64Mi"
+        cpu: "1"

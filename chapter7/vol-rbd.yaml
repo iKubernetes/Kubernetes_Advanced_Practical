@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: vol-rbd-pod
+spec:
+  containers:
+  - name: redis
+    image: redis:4-alpine
+    ports:
+    - containerPort: 6379
+      name: redisport
+    volumeMounts:
+    - mountPath: /data
+      name: redis-rbd-vol
+  volumes:
+    - name: redis-rbd-vol
+      rbd:
+        monitors:
+        - '172.16.0.56:6789'
+        - '172.16.0.57:6789'
+        - '172.16.0.58:6789'
+        pool: kube
+        image: redis
+        fsType: ext4
+        readOnly: false
+        user: admin
+        secretRef:
+           name: ceph-secret

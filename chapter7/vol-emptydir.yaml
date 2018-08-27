@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: vol-emptydir-pod
+spec:
+  volumes:
+  - name: html
+    emptyDir: {}
+  containers:
+  - name: nginx
+    image: nginx:1.12-alpine
+    volumeMounts:
+    - name: html
+      mountPath: /usr/share/nginx/html
+  - name: pagegen
+    image: alpine
+    volumeMounts:
+    - name: html
+      mountPath: /html
+    command: ["/bin/sh", "-c"]
+    args:
+    - while true; do
+        echo $(hostname) $(date) >> /html/index.html;
+        sleep 10;
+      done

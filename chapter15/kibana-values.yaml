@@ -1,0 +1,19 @@
+image:
+  repository: "kibana"
+  tag: "5.5"
+  pullPolicy: "IfNotPresent"
+
+env:
+  # All Kibana configuration options are adjustable via env vars.
+  # To adjust a config option to an env var uppercase + replace `.` with `_`
+  # Ref: https://www.elastic.co/guide/en/kibana/current/settings.html
+  #
+  ELASTICSEARCH_URL: http://efk-els-elasticsearch-client.logs.svc.cluster.local:9200
+  SERVER_PORT: 5601
+  # LOGGING_VERBOSE: "true"
+  # SERVER_DEFAULTROUTE: "/app/kibana"
+
+service:
+  type: NodePort
+  externalPort: 443
+  internalPort: 5601

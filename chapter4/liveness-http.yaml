@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    test: liveness
+  name: liveness-http
+spec:
+  containers:
+  - name: liveness-demo
+    image: nginx:1.12-alpine
+    ports:
+    - name: http
+      containerPort: 80
+    lifecycle:
+      postStart:
+        exec:
+          command:
+          - /bin/sh
+          - -c
+          - 'echo Healty > /usr/share/nginx/html/healthz'
+    livenessProbe:
+      httpGet:
+        path: /healthz
+        port: http
+        scheme: HTTP

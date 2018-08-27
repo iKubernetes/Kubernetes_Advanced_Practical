@@ -1,0 +1,73 @@
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+appVersion: "5.5"
+
+image:
+  repository: "centerforopenscience/elasticsearch"
+  tag: "5.5"
+  pullPolicy: "IfNotPresent"
+
+cluster:
+  name: "elasticsearch"
+  config:
+  env:
+    MINIMUM_MASTER_NODES: "2"
+
+client:
+  name: client
+  replicas: 2
+  serviceType: ClusterIP
+  heapSize: "4096m"
+  antiAffinity: "soft"
+  resources:
+    limits:
+      cpu: "4"
+      # memory: "8192Mi"
+    requests:
+      cpu: "1"
+      memory: "4096Mi"
+
+master:
+  name: master
+  exposeHttp: false
+  replicas: 3
+  heapSize: "4096m"
+  persistence:
+    enabled: false
+    accessMode: ReadWriteOnce
+    name: data
+    size: "4Gi"
+    #storageClass: "glusterfs"
+  antiAffinity: "soft"
+  resources:
+    limits:
+      cpu: "4"
+      # memory: "8192Mi"
+    requests:
+      cpu: "1"
+      memory: "4096Mi"
+
+data:
+  name: data
+  exposeHttp: false
+  replicas: 2
+  heapSize: "4096m"
+  persistence:
+    enabled: false
+    accessMode: ReadWriteOnce
+    name: data
+    size: "60Gi"
+    #storageClass: "glusterfs"
+  terminationGracePeriodSeconds: 3600
+  antiAffinity: "soft"
+  resources:
+    limits:
+      cpu: "4"
+      # memory: "16384Mi"
+    requests:
+      cpu: "1"
+      memory: "4096Mi"
+
+## Install Default RBAC roles and bindings
+rbac:
+  create: true

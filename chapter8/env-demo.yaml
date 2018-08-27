@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: env-demo
+  labels:
+    purpose: demonstrate-environment-variables
+spec:
+  containers:
+  - name: env-demo-container
+    image: busybox
+    command: ["httpd"]
+    args: ["-f"]
+    env:
+    - name: HELLO_WORLD
+      value: just a demo
+    - name: MY_NODE_NAME
+      valueFrom:
+        fieldRef:
+          fieldPath: spec.nodeName
+    - name: MY_NODE_IP
+      valueFrom:
+        fieldRef:
+          fieldPath: status.hostIP
+    - name: MY_POD_NAMESPACE
+      valueFrom:
+        fieldRef:
+          fieldPath: metadata.namespace
+  restartPolicy: OnFailure

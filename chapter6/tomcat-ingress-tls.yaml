@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: tomcat-ingress-tls
+  namespace: testing
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+spec:
+  tls:
+  - hosts:
+    - tomcat.ikubernetes.io
+    secretName: tomcat-ingress-secret
+  rules:
+  - host: tomcat.ikubernetes.io
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: tomcat-svc
+          servicePort: 80
+

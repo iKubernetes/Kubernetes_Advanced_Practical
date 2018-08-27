@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: glusterfs-endpoints
+subsets:
+  - addresses:
+    - ip: 172.16.2.36
+    ports:
+    - port: 24007 
+      name: glusterd
+  - addresses:
+    - ip: 172.16.2.37
+    ports:
+    - port: 24007 
+      name: glusterd
+  - addresses:
+    - ip: 172.16.2.38
+    ports:
+    - port: 24007 
+      name: glusterd

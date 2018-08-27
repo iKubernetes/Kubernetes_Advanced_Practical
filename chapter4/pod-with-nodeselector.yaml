@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-with-nodeselector
+  labels: 
+    env: testing
+spec:
+  containers:
+  - name: myapp
+    image: ikubernetes/myapp:v1
+    ports:     
+    - name: http
+      containerPort: 80
+      protocol: TCP
+  nodeSelector:
+    disktype: ssd

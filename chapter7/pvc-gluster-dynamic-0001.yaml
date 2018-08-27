@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+ name: pvc-gluster-dynamic-0001
+ annotations:
+   volume.beta.kubernetes.io/storage-class: gluster-dynamic
+spec:
+ accessModes:
+  - ReadWriteOnce
+ resources:
+   requests:
+     storage: 5Gi

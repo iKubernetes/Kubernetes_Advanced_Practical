@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: lifecycle-demo
+spec:
+  containers:
+  - name: lifecycle-demo-container
+    image: ikubernetes/myapp:v1
+    lifecycle:
+      postStart:
+        exec:
+          command: ["/bin/sh","-c","echo $(hostname) | lifecycle hooks handler > /usr/share/nginx/html/test.html"]

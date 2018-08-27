@@ -1,0 +1,7 @@
+apiVersion: auth.ilinux.io/v1beta1
+kind: User
+metadata:
+  name: tony
+  namespace: default
+spec:
+  userID: 999999

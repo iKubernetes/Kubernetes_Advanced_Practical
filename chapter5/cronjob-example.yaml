@@ -1,0 +1,24 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: cronjob-example
+  labels:
+    app: mycronjob
+spec:
+  schedule: "*/2 * * * *"
+  jobTemplate:
+    metadata:
+      labels:
+        app: mycronjob-jobs
+    spec:
+      parallelism: 2
+      template:
+        spec:
+          containers:
+          - name: myjob
+            image: alpine
+            command:
+            - /bin/sh
+            - -c
+            - date; echo Hello from the Kubernetes cluster; sleep 10
+          restartPolicy: OnFailure

@@ -1,0 +1,12 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: myapp-headless-svc
+spec:
+  clusterIP: None
+  selector:
+    app: myapp
+  ports:
+  - port: 80
+    targetPort: 80
+    name: httpport

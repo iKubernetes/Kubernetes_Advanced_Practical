@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp-deploy-with-node-affinity
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: myapp
+  template:
+    metadata:
+      name: myapp-pod
+      labels:
+        app: myapp
+    spec:
+      affinity:
+        nodeAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 60
+            preference:
+              matchExpressions:
+              - {key: zone, operator: In, values: ["foo"]}
+          - weight: 30
+            preference:
+              matchExpressions:
+              - {key: ssd, operator: Exists, values: []}
+      containers:
+      - name: myapp
+        image: ikubernetes/myapp:v1
