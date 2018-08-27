@@ -1,2 +1,3 @@
-# kubenetes_in_practise
-第二次修正版使用
+# kubernetes_in_practise
+
+尝试重新修正整个书箱！
