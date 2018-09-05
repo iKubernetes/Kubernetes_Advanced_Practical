@@ -1,0 +1,31 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: namespace-deny-all
+  namespace: default
+spec:
+  policyTypes: ["Ingress","Egress"]
+  podSelector: {}
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: namespace-internal-traffic
+  namespace: default
+spec:
+  policyTypes: ["Ingress","Egress"]
+  podSelector: {}
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchExpressions: 
+        - key: name
+          operator: In
+          values: ["default","kube-system"]
+  egress:
+  - to:
+    - namespaceSelector:
+        matchExpressions: 
+        - key: name
+          operator: In
+          values: ["default","kube-system"]

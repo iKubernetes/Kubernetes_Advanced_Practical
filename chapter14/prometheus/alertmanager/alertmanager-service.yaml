@@ -13,7 +13,6 @@ spec:
       port: 80
       protocol: TCP
       targetPort: 9093
-      nodePort: 30093
   selector:
     k8s-app: alertmanager 
-  type: "NodePort"
+  type: "ClusterIP"

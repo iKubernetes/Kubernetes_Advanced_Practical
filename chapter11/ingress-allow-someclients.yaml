@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-myapp-ingress
+  namespace: default
+spec:
+  podSelector:
+    matchLabels:
+      run: myapp
+  policyTypes: ["Ingress"]
+  ingress:
+  - from:
+    - ipBlock:
+        cidr: 10.244.0.0/16
+        except:
+        - 10.244.3.0/24
+    ports:
+    - protocol: TCP
+      port: 80
