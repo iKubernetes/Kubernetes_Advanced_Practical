@@ -1,3 +1,3 @@
 # kubernetes_in_practise
 
-尝试重新修正整个书箱！
+《Kubernetes入门与实践》书中配置清单示例。

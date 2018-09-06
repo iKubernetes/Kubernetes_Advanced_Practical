@@ -1,7 +1,7 @@
 kind: ClusterRoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-  name: psp:default
+  name: restricted-psp-user
 roleRef:
   kind: ClusterRole
   name: psp:restricted
@@ -10,22 +10,22 @@ subjects:
 - kind: Group
   apiGroup: rbac.authorization.k8s.io
   name: system:authenticated
-- kind: Group
-  apiGroup: rbac.authorization.k8s.io
-  name: system:unauthenticated
-- kind: Group
-  apiGroup: rbac.authorization.k8s.io
-  name: system:serviceaccounts
 ---
-kind: ClusterRoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
 metadata:
-  name: psp:kubernetes-admin
+  name: privileged-psp-user
 roleRef:
+  apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
   name: psp:privileged
-  apiGroup: rbac.authorization.k8s.io
 subjects:
-- kind: User
-  apiGroup: rbac.authorization.k8s.io
-  name: kubernetes-admin
+- apiGroup: rbac.authorization.k8s.io
+  kind: Group
+  name: system:masters
+- apiGroup: rbac.authorization.k8s.io
+  kind: Group
+  name: system:node
+- apiGroup: rbac.authorization.k8s.io
+  kind: Group
+  name: system:serviceaccounts:kube-system
