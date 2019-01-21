@@ -1,3 +1,3 @@
-# kubernetes_in_practise
+# Kubernetes Advanced Practical
 
-《Kubernetes入门与实践》书中配置清单示例。
+《Kubernetes进阶实战》一书中的配置清单示例源码。
