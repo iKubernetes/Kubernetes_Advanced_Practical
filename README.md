@@ -3,8 +3,7 @@
 《Kubernetes进阶实战》一书中的配置清单示例源码。
 
 ## 重要提示
-《Kubernetes进阶实战（第2版）》已经正式上市发售，该书主要以Kubernetes v1.19和v1.20为基础讲解，有需的读者朋友请移步各大线上商城搜索了解。相关代码请点击下面的链接直达：
-[第2版随书代码](https://github.com/iKubernetes/Kubernetes_Advanced_Practical_2rd)
+《Kubernetes进阶实战（第2版）》已经正式上市发售，该书主要以Kubernetes v1.19和v1.20为基础讲解，有需的读者朋友请移步各大线上商城搜索了解。相关代码请点击后面的链接直达：[第2版随书代码](https://github.com/iKubernetes/Kubernetes_Advanced_Practical_2rd)。
 
 ![图书封面](https://github.com/iKubernetes/Kubernetes_Advanced_Practical_2rd/raw/main/imgs/book.jpg)
 
